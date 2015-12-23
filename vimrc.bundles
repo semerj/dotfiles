@@ -1,0 +1,31 @@
+Plugin 'gmarik/vundle.vim'                " plug-in manager
+Plugin 'airblade/vim-gitgutter'           " shows a git diff in the 'gutter' (sign column)
+Plugin 'altercation/vim-colors-solarized' " colorscheme
+Plugin 'austintaylor/vim-indentobject'    " defines a new text object representing lines of code at the same indent level
+Plugin 'christoomey/vim-tmux-navigator'   " navigation between tmux panes and vim splits
+Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file, buffer, mru, tag, etc finder
+Plugin 'majutsushi/tagbar'                " browse the tags of the current file and get an overview of its structure.
+Plugin 'rking/ag.vim'                     " plugin for the_silver_searcher
+Plugin 'garbas/vim-snipmate'              " implements some of TextMate's snippets features
+Plugin 'MarcWeber/vim-addon-mw-utils'     " interpret a file by function and cache file automatically
+Plugin 'tomtom/tlib_vim'                  " There isn't much need to install it unless another plugin requires you to do so.
+Plugin 'nathanaelkane/vim-indent-guides'  " visually display indent levels in code
+Plugin 'pangloss/vim-javascript'          " improved Javascript indentation and syntax support
+Plugin 'scrooloose/nerdtree'              " explore your filesystem and to open files and directories
+Plugin 'scrooloose/syntastic'             " Syntax checking hacks
+Plugin 'slim-template/vim-slim'           " slim syntax highlighting
+Plugin 'tpope/vim-commentary'             " Comment stuff out
+Plugin 'tpope/vim-fugitive'               " Git wrapper
+Plugin 'tpope/vim-repeat'                 " enable repeating supported plugin maps
+Plugin 'tpope/vim-surround'               " quoting/parenthesizing made simple
+Plugin 'tpope/vim-unimpaired'             " pairs of handy bracket mappings
+Plugin 'tpope/vim-vividchalk'             " colorscheme
+Plugin 'vim-scripts/Align'                " align text, eqns, declarations, tables, etc
+Plugin 'vim-scripts/greplace.vim'         " Replace a pattern across multiple files interactively
+Plugin 'vim-scripts/matchit.zip'          " configure % to match more than just single characters
+Plugin 'davidhalter/jedi-vim'             " jedi autocompletion library
+Plugin 'ervandew/supertab'                " Perform all your vim insert mode completions with Tab
+Plugin 'jpalardy/vim-slime'               " benefits of a REPL and the benefits of using Vim
+Plugin 'JuliaLang/julia-vim'              " support for Julia
+Plugin 'derekwyatt/vim-scala'             " integration of Scala into Vim
+Plugin 'wookiehangover/jshint.vim'        " Static Code Analysis Tool for JavaScript

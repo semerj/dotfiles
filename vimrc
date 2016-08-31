@@ -7,7 +7,7 @@ syntax enable
 " configure Vundle
 filetype on " without this vim emits a zero exit status, later, because of :ft off
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " install Vundle bundles
@@ -118,13 +118,7 @@ inoremap jj <ESC>
 "nmap <leader>hl :let @/ = ""<CR>
 
 " gui settings
-if (&t_Co == 256 || has('gui_running'))
-  if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme solarized
-  else
-    colorscheme desert
-  endif
-endif
+colorscheme solarized
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.
 "

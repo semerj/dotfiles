@@ -10,7 +10,6 @@ Plugin 'garbas/vim-snipmate'              " implements some of TextMate's snippe
 Plugin 'MarcWeber/vim-addon-mw-utils'     " interpret a file by function and cache file automatically
 Plugin 'tomtom/tlib_vim'                  " There isn't much need to install it unless another plugin requires you to do so.
 Plugin 'nathanaelkane/vim-indent-guides'  " visually display indent levels in code
-Plugin 'pangloss/vim-javascript'          " improved Javascript indentation and syntax support
 Plugin 'scrooloose/nerdtree'              " explore your filesystem and to open files and directories
 Plugin 'scrooloose/syntastic'             " Syntax checking hacks
 Plugin 'slim-template/vim-slim'           " slim syntax highlighting
@@ -26,6 +25,3 @@ Plugin 'vim-scripts/matchit.zip'          " configure % to match more than just 
 Plugin 'davidhalter/jedi-vim'             " jedi autocompletion library
 Plugin 'ervandew/supertab'                " Perform all your vim insert mode completions with Tab
 Plugin 'jpalardy/vim-slime'               " benefits of a REPL and the benefits of using Vim
-Plugin 'JuliaLang/julia-vim'              " support for Julia
-Plugin 'derekwyatt/vim-scala'             " integration of Scala into Vim
-Plugin 'wookiehangover/jshint.vim'        " Static Code Analysis Tool for JavaScript

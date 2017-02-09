@@ -21,28 +21,28 @@ call vundle#end()
 filetype plugin indent on
 
 set autoindent
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-set backupcopy=yes                                           " see :help crontab
-set clipboard=unnamed                                        " yank and paste with the system clipboard
-set directory-=.                                             " don't store swapfiles in the current directory
+set autoread                            " reload files when changed on disk, i.e. via `git checkout`
+set backspace=2                         " Fix broken backspace in some setups
+set backupcopy=yes                      " see :help crontab
+set clipboard=unnamed                   " yank and paste with the system clipboard
+set directory-=.                        " don't store swapfiles in the current directory
 set encoding=utf-8
-set expandtab                                                " expand tabs to spaces
-set ignorecase                                               " case-insensitive search
-set incsearch                                                " search as you type
-set laststatus=2                                             " always show statusline
-set list                                                     " show trailing whitespace
+set expandtab                           " expand tabs to spaces
+set ignorecase                          " case-insensitive search
+set incsearch                           " search as you type
+set laststatus=2                        " always show statusline
+set list                                " show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
-set number                                                   " show line numbers
-set ruler                                                    " show where you are
-set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
+set number                              " show line numbers
+set ruler                               " show where you are
+set scrolloff=3                         " show context above/below cursorline
+set shiftwidth=2                        " normal mode indentation commands use 2 spaces
 set showcmd
-set smartcase                                                " case-sensitive search if any caps
-set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
-set tabstop=8                                                " actual tabs occupy 8 characters
+set smartcase                           " case-sensitive search if any caps
+set softtabstop=2                       " insert mode tab and backspace use 2 spaces
+set tabstop=8                           " actual tabs occupy 8 characters
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu                                                 " show a navigable menu for tab completion
+set wildmenu                            " show a navigable menu for tab completion
 set wildmode=longest,list,full
 
 " Enable basic mouse behavior such as resizing buffers.
@@ -69,13 +69,16 @@ nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
+" save current buffer when you hit Esc twice
+map <Esc><Esc> :w<CR>
+
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
-let g:gitgutter_enabled = 0
+" let g:gitgutter_enabled = 0
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -91,6 +94,8 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.md set spell
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
+" python pep8
+" autocmd FileType python setlocal colorcolumn=80
 
 " Fix Cursor in TMUX
 if exists('$TMUX')
@@ -135,3 +140,28 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+" Quick run via <F5>
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+
+augroup SPACEVIM_ASYNCRUN
+  autocmd!
+  " Automatically open the quickfix window
+  autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+augroup END
+
+function! s:compile_and_run()
+  exec 'w'
+  if &filetype == 'sh'
+    exec "AsyncRun! time bash %"
+  elseif &filetype == 'python'
+    exec "AsyncRun! time python %"
+  endif
+endfunction
+
+" http://www.liuchengxu.org/posts/use-vim-as-a-python-ide/#code-formatter
+" let maplocalleader = "\\"
+" autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>

@@ -12,7 +12,7 @@ ZSH_THEME="ys"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
@@ -59,7 +59,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
-PATH="$HOME/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local:/usr/local/sbin:/opt/X11/bin:/usr/local/mysql/bin:/usr/local/opt/postgresql-9.3/bin:/usr/textbin:$HOME/.node/bin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local:/usr/local/sbin:/opt/X11/bin"
 
 # bind UP and DOWN arrow keys
 bindkey '\eOA' history-beginning-search-backward
@@ -72,6 +72,3 @@ bindkey '\e[B' history-beginning-search-forward
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Added by the Heroku Toolbelt
-# export PATH="/usr/local/heroku/bin:$PATH"

@@ -7,8 +7,3 @@ function! whitespace#strip_trailing()
   let @/=previous_search
   call cursor(previous_cursor_line, previous_cursor_column)
 endfunction
-
-" strip trailing whitespace on Ruby buffer saves
-augroup whitespace
-  autocmd BufWritePre *.rb call whitespace#strip_trailing()
-augroup END

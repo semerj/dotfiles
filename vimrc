@@ -78,7 +78,7 @@ cnoremap w!! %!sudo tee > /dev/null %
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
-" let g:gitgutter_enabled = 0
+" let g:gitgutter_enabled=0  " turn off gitgutter
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -113,17 +113,16 @@ vnoremap p "_dP
 """"""""""""""""""""""""""
 " vimrc.local moved here "
 """"""""""""""""""""""""""
-set nocursorline " don't highlight current line
-
-" keyboard shortcuts
-inoremap jj <ESC>
-
-" highlight search
-"set hlsearch
+colorscheme solarized                      " gui settings
+set nocursorline                           " don't highlight current line
+set hlsearch                               " highlight search
 "nmap <leader>hl :let @/ = ""<CR>
-
-" gui settings
-colorscheme solarized
+" turn off search highlight with ,/
+nnoremap <leader>/ :nohlsearch<CR>
+" exit insert mode with jj
+inoremap jj <ESC>
+" automatically save the current buffer when you hit Esc twice
+map <Esc><Esc> :w<CR>
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.
 "
@@ -141,9 +140,13 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
+" Make asyncrun.vim cooperate with vim-fugitive
 " https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
+" If use Vim8, you can execute python file asynchronously by
+" skywind3000/asyncrun.vim and output automatically the result to the quickfix
+" window (http://liuchengxu.org/posts/use-vim-as-a-python-ide/)"
 " Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
 
@@ -162,6 +165,14 @@ function! s:compile_and_run()
   endif
 endfunction
 
-" http://www.liuchengxu.org/posts/use-vim-as-a-python-ide/#code-formatter
-" let maplocalleader = "\\"
-" autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+" Copies only the text that matches search hits. Works with multiline matches.
+" Search for a pattern, then enter :CopyMatches to copy all matches to the
+" clipboard, or :CopyMatches x where x is any register to hold the result.
+" (http://vim.wikia.com/wiki/Copy_search_matches)
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
